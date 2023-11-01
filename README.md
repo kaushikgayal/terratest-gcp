@@ -1,6 +1,6 @@
-# Managing infrastructure as code with Terraform, Cloud Build, and GitOps
-
-This is the repo for the [Managing infrastructure as code with Terraform, Cloud Build, and GitOps](https://cloud.google.com/solutions/managing-infrastructure-as-code) tutorial. This tutorial explains how to manage infrastructure as code with Terraform and Cloud Build using the popular GitOps methodology. 
+# Managing infrastructure as code with Terraform and testing using Terraform test in GCP
+This is a repo to provide a quick demo on using Terraform test released in 1.6.x version of Terraform.
+This repo is using GCP to create a VM in a subnet and testing the html page accessibility from Internet.
 
 ## Configuring your **dev** environment
 
@@ -15,17 +15,19 @@ terraform plan
 terraform apply
 terraform destroy
 ```
+## Testing the http_server module
 
-## Promoting your environment to **production**
+The http_server.tftest.hcl file contains all the tests to run which uses main.tf terraform code to use as a helper. Helper module is used to provide the data objects of already created resources (Apache server).
 
-Once you have tested your app (in this example an apache2 http server), you can promote your configuration to prodution. This step will:
- 1. Configure an apache2 http server on network '**prod**' and subnet '**prod**-subnet-01'
- 2. Open port 80 on firewall for this http server 
+Step to run tests:
+Execute below command to get GCP Token
+```bash
+export MYTOKEN=$(gcloud auth print-access-token)
+```
+Copy the token value and paste it in http_server.tftest.hcl variables section
 
 ```bash
-cd ../prod
+cd ../environments/dev
 terraform init
-terraform plan
-terraform apply
-terraform destroy
+terraform test
 ```
