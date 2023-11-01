@@ -14,8 +14,14 @@
 
 
 terraform {
-  backend "gcs" {
-    bucket = "PROJECT_ID-tfstate"
-    prefix = "env/dev"
+  backend "local" {
+
   }
+  # backend "remote" {
+  #    hostname = "app.terraform.io"
+  #   organization = "kaushikgayal"
+  #   workspaces {
+  #     name = "terratest-gcp"
+  #   }
+  # }
 }

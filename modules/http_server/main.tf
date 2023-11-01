@@ -41,4 +41,20 @@ resource "google_compute_instance" "http_server" {
 
   # Apply the firewall rule to allow external IPs to access this instance
   tags = ["http-server"]
+  resource_policies = [google_compute_resource_policy.daily_workhours.id]
+}
+
+resource "google_compute_resource_policy" "daily_workhours" {
+  name   = "gce-policy"
+  region = "us-west1"
+  description = "Start and stop instances during work hours"
+  instance_schedule_policy {
+    vm_start_schedule {
+      schedule = "0 10 * * 1,2,3,4,5"
+    }
+    vm_stop_schedule {
+      schedule = "0 18 * * 1,2,3,4,5"
+    }
+    time_zone = "Australia/Melbourne"
+  }
 }

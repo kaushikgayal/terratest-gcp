@@ -14,3 +14,16 @@
 
 
 variable "project" {}
+
+variable "auth_token" {
+  type        = string
+  description = "Token. Usually stored in env variable $MYTOKEN"
+}
+
+variable "total_servers" {
+  type = number
+  validation {
+    condition = var.total_servers % 2 != 0
+    error_message = "server numbers must be an odd number"
+  }
+}
