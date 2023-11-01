@@ -3,7 +3,7 @@ variables{
     env = "dev"
     subnet = "dev-subnet-01"
     total_servers = 1
-    auth_token = "ya29.a0AfB_byBBdJc4uFiZF4jvfV7r_XarDGduYPMbJ0G-axCMLykPe7-lwOBtZRXBnjl1ESY5t6vitI8fRPi9XhlbSAD15UJFrfbcxPLwoTj3TmXnqTAn13snAoksBJGaQvRj91LqA_g3k40s2UcSTbWHEkaWCxskGOZugh_EMluMft8aCgYKAWkSARISFQGOcNnCsGh2FRWol1ry-5ZOiAeh0g0178"
+    auth_token = ""
 }
 
 provider "google" {
